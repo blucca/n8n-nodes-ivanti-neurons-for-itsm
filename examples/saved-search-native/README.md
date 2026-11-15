@@ -66,7 +66,8 @@ python3 probe.py --runtime ./n8n-runtime --stock ./ivanti-stock \
 ```
 
 The script starts a loopback HTTP fixture, mounts each source package in a
-fresh n8n user folder, imports a synthetic credential, imports the workflow,
+fresh n8n user folder with an explicitly local SQLite database, imports a
+synthetic credential, imports the workflow,
 and executes it. It then checks the real outputs and HTTP requests. The
 fixture server stops on completion; existing n8n data and workflows stay in
 their own user folder. Output includes the two workflow exports, full raw

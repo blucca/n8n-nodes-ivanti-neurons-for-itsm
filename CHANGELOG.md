@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Search → Saved**, node version **1.4**: **Return All** (on by default) and **Limit** fetch all matching records or the requested maximum, instead of silently returning Ivanti's default first 25 records (#72). Saved nodes on versions 1–1.3 keep their single-request behaviour
+
 ## [1.9.1] - 2026-11-13
 
 ### Changed

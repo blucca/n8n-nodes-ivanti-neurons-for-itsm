@@ -50,8 +50,8 @@ describe('Query mode in the editor', () => {
 		}
 	});
 
-	it('is version 1.3 of both nodes', () => {
-		assert.deepEqual(new IvantiNeuronsForItsm().description.version, [1, 1.1, 1.2, 1.3]);
+	it('adds action version 1.4 and keeps the polling trigger at version 1.3', () => {
+		assert.deepEqual(new IvantiNeuronsForItsm().description.version, [1, 1.1, 1.2, 1.3, 1.4]);
 		assert.deepEqual(new IvantiNeuronsForItsmTrigger().description.version, [1, 1.1, 1.2, 1.3]);
 	});
 });

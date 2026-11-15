@@ -1,0 +1,59 @@
+{
+  "id": "ivantiNative599",
+  "name": "Ivanti Saved Search native stock",
+  "active": false,
+  "nodes": [
+    {
+      "id": "start",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "Legacy37",
+      "name": "Legacy37",
+      "type": "@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm.ivantiNeuronsForItsm",
+      "typeVersion": 1.3,
+      "position": [
+        300,
+        0
+      ],
+      "parameters": {
+        "resource": "search",
+        "operation": "savedSearch",
+        "searchObject": "Incidents",
+        "savedSearchName": "All_Active_Incidents",
+        "savedSearchGUID": "00000000000000000000000000000025"
+      },
+      "credentials": {
+        "ivantiNeuronsForItsmApiKeyApi": {
+          "id": "ivanti-fixture-only",
+          "name": "Ivanti fixture only"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Legacy37",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "pinData": {}
+}

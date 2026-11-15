@@ -1,0 +1,246 @@
+{
+  "id": "ivantiNative599",
+  "name": "Ivanti Saved Search native fixed",
+  "active": false,
+  "nodes": [
+    {
+      "id": "start",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "Legacy37",
+      "name": "Legacy37",
+      "type": "@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm.ivantiNeuronsForItsm",
+      "typeVersion": 1.3,
+      "position": [
+        300,
+        0
+      ],
+      "parameters": {
+        "resource": "search",
+        "operation": "savedSearch",
+        "searchObject": "Incidents",
+        "savedSearchName": "All_Active_Incidents",
+        "savedSearchGUID": "00000000000000000000000000000025"
+      },
+      "credentials": {
+        "ivantiNeuronsForItsmApiKeyApi": {
+          "id": "ivanti-fixture-only",
+          "name": "Ivanti fixture only"
+        }
+      }
+    },
+    {
+      "id": "Default37",
+      "name": "Default37",
+      "type": "@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm.ivantiNeuronsForItsm",
+      "typeVersion": 1.4,
+      "position": [
+        300,
+        120
+      ],
+      "parameters": {
+        "resource": "search",
+        "operation": "savedSearch",
+        "searchObject": "Incidents",
+        "savedSearchName": "All_Active_Incidents",
+        "savedSearchGUID": "00000000000000000000000000000025"
+      },
+      "credentials": {
+        "ivantiNeuronsForItsmApiKeyApi": {
+          "id": "ivanti-fixture-only",
+          "name": "Ivanti fixture only"
+        }
+      }
+    },
+    {
+      "id": "All137",
+      "name": "All137",
+      "type": "@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm.ivantiNeuronsForItsm",
+      "typeVersion": 1.4,
+      "position": [
+        300,
+        240
+      ],
+      "parameters": {
+        "resource": "search",
+        "operation": "savedSearch",
+        "searchObject": "Incidents",
+        "savedSearchName": "All_Active_Incidents",
+        "savedSearchGUID": "00000000000000000000000000000089",
+        "returnAll": true,
+        "requestOptions": {
+          "overrideHeaders": {
+            "header": [
+              {
+                "name": "Authorization",
+                "value": "rest_api_key=override-fixture"
+              },
+              {
+                "name": "X-Fixture",
+                "value": "all137"
+              }
+            ]
+          }
+        }
+      },
+      "credentials": {
+        "ivantiNeuronsForItsmApiKeyApi": {
+          "id": "ivanti-fixture-only",
+          "name": "Ivanti fixture only"
+        }
+      }
+    },
+    {
+      "id": "Limit120",
+      "name": "Limit120",
+      "type": "@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm.ivantiNeuronsForItsm",
+      "typeVersion": 1.4,
+      "position": [
+        300,
+        360
+      ],
+      "parameters": {
+        "resource": "search",
+        "operation": "savedSearch",
+        "searchObject": "Incidents",
+        "savedSearchName": "All_Active_Incidents",
+        "savedSearchGUID": "00000000000000000000000000000089",
+        "returnAll": false,
+        "limit": 120
+      },
+      "credentials": {
+        "ivantiNeuronsForItsmApiKeyApi": {
+          "id": "ivanti-fixture-only",
+          "name": "Ivanti fixture only"
+        }
+      }
+    },
+    {
+      "id": "Limit10",
+      "name": "Limit10",
+      "type": "@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm.ivantiNeuronsForItsm",
+      "typeVersion": 1.4,
+      "position": [
+        300,
+        480
+      ],
+      "parameters": {
+        "resource": "search",
+        "operation": "savedSearch",
+        "searchObject": "Incidents",
+        "savedSearchName": "All_Active_Incidents",
+        "savedSearchGUID": "00000000000000000000000000000025",
+        "returnAll": false,
+        "limit": 10
+      },
+      "credentials": {
+        "ivantiNeuronsForItsmApiKeyApi": {
+          "id": "ivanti-fixture-only",
+          "name": "Ivanti fixture only"
+        }
+      }
+    },
+    {
+      "id": "Empty",
+      "name": "Empty",
+      "type": "@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm.ivantiNeuronsForItsm",
+      "typeVersion": 1.4,
+      "position": [
+        300,
+        600
+      ],
+      "parameters": {
+        "resource": "search",
+        "operation": "savedSearch",
+        "searchObject": "Incidents",
+        "savedSearchName": "All_Active_Incidents",
+        "savedSearchGUID": "00000000000000000000000000000000"
+      },
+      "credentials": {
+        "ivantiNeuronsForItsmApiKeyApi": {
+          "id": "ivanti-fixture-only",
+          "name": "Ivanti fixture only"
+        }
+      }
+    },
+    {
+      "id": "Exactly100",
+      "name": "Exactly100",
+      "type": "@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm.ivantiNeuronsForItsm",
+      "typeVersion": 1.4,
+      "position": [
+        300,
+        720
+      ],
+      "parameters": {
+        "resource": "search",
+        "operation": "savedSearch",
+        "searchObject": "Incidents",
+        "savedSearchName": "All_Active_Incidents",
+        "savedSearchGUID": "00000000000000000000000000000064"
+      },
+      "credentials": {
+        "ivantiNeuronsForItsmApiKeyApi": {
+          "id": "ivanti-fixture-only",
+          "name": "Ivanti fixture only"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Legacy37",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Default37",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "All137",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Limit120",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Limit10",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Empty",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Exactly100",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "pinData": {}
+}

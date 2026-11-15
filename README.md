@@ -389,7 +389,7 @@ Versions 1.1 and 1.2 still pass any key as written and do not accept lists.
 
 **Values from the input**: switch the field to **Expression** and write the values into the JSON, for example `{ "$filter": "Owner eq '{{ $json.owner }}'" }`, or pass a whole query object built by an earlier node with `{{ $json.query }}`. In both cases the values are still sent as written, so quote and escape text values yourself.
 
-**Node versions**: workflows created before version 1.1 keep version 1, with the "Define Filter as JSON" toggle and no Mode field. Workflows keep the version they were built with; new nodes are added as the latest version (1.3). Version 1.2 also changes the Automation › Report Transaction Status options, and version 1.3 checks the keys of the JSON mode.
+**Node versions**: workflows created before version 1.1 keep version 1, with the "Define Filter as JSON" toggle and no Mode field. Workflows keep the version they were built with; new nodes are added as the latest version (1.4). Version 1.2 also changes the Automation › Report Transaction Status options, version 1.3 checks the keys of the JSON mode, and version 1.4 gives Relationship › Get Related these query options and paging.
 
 The same options are available on the **Ivanti Neurons for ITSM Polling Trigger**.
 
@@ -638,15 +638,22 @@ Navigate and manage OData relationships between business objects.
 
 Traverse a relationship and fetch related records.
 
-**Parameters**:
+**Parameters** (node version 1.4):
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | Business Object | string | Source object |
 | Record ID | string | Source record GUID |
-| Relationship Name | string | Navigation property name |
-| Merge Results | boolean | Merge related data into source item |
-| Return All | boolean | Fetch all related or limit |
-| Limit | number | Max related records |
+| Relationship | string | Navigation property name |
+| Return All | boolean | Read every related record, page by page (on by default) |
+| Limit | number | Max related records when Return All is off |
+| Mode | options | **Manual** (Select Fields, OData Filter, Order By) or **JSON** (OData Query (JSON) with `$filter`, `$select` and `$orderby`), as in Business Object › Get Many |
+| Include Input Fields | boolean | Put the related records into the input item, under the relationship name |
+
+The related records are read 100 at a time with `$top` and `$skip`. Without an order of your own they are ordered by `RecId`, so pages do not overlap.
+
+**AI agents**: in JSON mode an agent can fill the query at run time, for example `{{ $fromAI('query', 'OData query with $filter, $select and $orderby', 'json') }}`, and set Limit, to narrow a large relationship instead of reading all of it.
+
+**Versions 1 to 1.3** (saved workflows) keep a single request with only **Select Fields**. Ivanti then returns its default page of 25 records, so a larger relationship is cut off (#71). Add the node again, or change its version, to get version 1.4.
 
 **Common Relationships**:
 | Object | Relationship | Returns |

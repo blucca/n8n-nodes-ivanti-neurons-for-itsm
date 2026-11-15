@@ -50,7 +50,7 @@ describe('Query mode in the editor', () => {
 		}
 	});
 
-	it('adds action version 1.4 and keeps the polling trigger at version 1.3', () => {
+	it('is version 1.4 of the action node and 1.3 of the trigger', () => {
 		assert.deepEqual(new IvantiNeuronsForItsm().description.version, [1, 1.1, 1.2, 1.3, 1.4]);
 		assert.deepEqual(new IvantiNeuronsForItsmTrigger().description.version, [1, 1.1, 1.2, 1.3]);
 	});

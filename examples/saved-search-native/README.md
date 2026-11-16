@@ -26,6 +26,19 @@ The 137-row control uses overridden Authorization and X-Fixture headers;
 both requests retain them and the same ActionId. A saved search supplies
 its own ordering, so this patch adds no `$orderby` parameter.
 
+## Install the released fix
+
+[PR #74](https://github.com/syn-con/n8n-nodes-ivanti-neurons-for-itsm/pull/74)
+was merged on November 15, 2026. The fix is now included in the published
+[`@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm` **1.10.0**](https://www.npmjs.com/package/@synergyconsulting/n8n-nodes-ivanti-neurons-for-itsm/v/1.10.0).
+Update the community package, then create a **Search → Saved** node on
+version **1.4**. Existing nodes on versions 1–1.3 keep their single request;
+updating the package alone leaves that legacy behavior in place.
+
+The recorded native results below use the pinned source patch. The published
+1.10.0 package was separately checked for node 1.4 and its Return All / Limit
+paging code; the native lab was run against the commits shown below.
+
 See [observed-results.json](observed-results.json). Its
 `complete_search_contract` field asks whether **all fixture matches** were
 returned: it is false for the legacy cutoff and for deliberately limited
@@ -34,8 +47,9 @@ requests. Each limited result separately matches its requested limit exactly.
 ## Run the complete check
 
 Measured environment: Linux, Python 3.12.3, Node 24.21.0, n8n 2.46.6, and
-community package 1.9.1. **Node version 1.4 is the source patch**, not an npm
-release. The maintainer publishes the next package version after review.
+community package 1.9.1 as the stock control, compared with the pinned
+source patch adding node version 1.4. Use these exact commits to reproduce
+the recorded results. For your own tenant, install package 1.10.0 as above.
 
 Prepare stock and patched source trees, using Node 24:
 
@@ -78,7 +92,7 @@ The JSON exports here are the exact recorded stock/fixed workflow inputs.
 
 ## Check your own tenant
 
-After the patched package is available, create a new **Search → Saved** node
+With package **1.10.0** installed, create a new **Search → Saved** node
 on version **1.4**, copying the business object, saved search name, ActionId
 and any options from the old node. Run the same search with Return All,
 then an explicit Limit. Compare the complete IDs/count with your tenant's
